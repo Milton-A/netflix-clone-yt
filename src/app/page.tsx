@@ -1,11 +1,15 @@
+import Banner from "@/components/Banner";
 import Header from "@/components/Header";
+import { fetchMovies } from "@/services/movieService";
 
-export default function Home() {
+
+async function Home() {
+  const movies = await fetchMovies()
   return (
-    <div className="">
+    <div className="relative h-screen bg-gradient-to-b from-gray-900/10 to-[#010511] lg:h-[140vh]">
       <Header />
       <main>
-        {/* Banner */}
+        <Banner />
         <section>
           {/* Row */}
 
@@ -15,3 +19,4 @@ export default function Home() {
     </div>
   );
 }
+export default Home;

@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react"
 
 import { BellIcon } from "@heroicons/react/16/solid"
-import Image from "next/image"
 import Link from "next/link"
 
 
@@ -27,7 +26,12 @@ function Header() {
     return (
         <header className={`${isScrolled && "bg-[#141414]"}`}>
             <div className="flex items-center space-x-2 md:space-x-10">
-                <Image src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix Logo" width={100} height={100} className="cursor-pointer object-contain" />
+                <img
+                    src="https://rb.gy/ulxxee"
+                    width={100}
+                    height={100}
+                    className="cursor-pointer object-contain"
+                />
                 <ul className="hidden space-x-4 md:flex">
                     <li className="headerLink">Home</li>
                     <li className="headerLink">TV Shows</li>
