@@ -3,11 +3,34 @@
 /* html, body, heading */
 @layer base {
     body {
-        @apply bg-[#141414] text-white
+        @apply bg-[#141414] text-white;
     }
 
     header {
         @apply fixed top-0 z-50 flex w-full items-center justify-between px-4 py-4 transition-all lg:px-10 lg:py-6;
+    }
+
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: oklch(57.7% 0.245 27.325) transparent;
+    }
+
+    *::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    *::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    *::-webkit-scrollbar-thumb {
+        background-color: oklch(57.7% 0.245 27.325);
+        border-radius: 10px;
+    }
+
+    *::-webkit-scrollbar-thumb:hover {
+        background-color: oklch(57.7% 0.245 27.325);
     }
 }
 
