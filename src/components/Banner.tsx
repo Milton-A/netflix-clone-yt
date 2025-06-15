@@ -8,14 +8,16 @@ import { FaPlay } from 'react-icons/fa'
 import { InformationCircleIcon } from '@heroicons/react/16/solid'
 
 interface Props {
-    netflixOriginals: Movie[]
+    netflixOriginals: Movie[] | null
 }
 
 function Banner({ netflixOriginals }: Props) {
     const [movie, setMovie] = useState<Movie | null>(null)
 
     useEffect(() => {
-        setMovie(netflixOriginals[Math.floor(Math.random() * netflixOriginals.length)])
+        if (netflixOriginals) {
+            setMovie(netflixOriginals[Math.floor(Math.random() * netflixOriginals.length)])
+        }
     }, [netflixOriginals])
 
     return (
