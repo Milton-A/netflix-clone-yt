@@ -7,7 +7,7 @@ import { useRef, useState } from "react"
 
 interface RowProps {
     title: string
-    movies: Movie[]
+    movies: Movie[] | null
 }
 
 function Row({ title, movies }: RowProps) {
@@ -38,7 +38,7 @@ function Row({ title, movies }: RowProps) {
                     onClick={() => handleClick('left')}
                 />
                 <div ref={rowRef} className="flex items-center space-x-0.5 overflow-x-scroll scrollbar-hide md:space-x-2.5 md:p-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                    {movies.map((movie) => (
+                    {movies?.map((movie) => (
                         <Thumbnail key={movie.id} movie={movie} />
                     ))}
                 </div>
