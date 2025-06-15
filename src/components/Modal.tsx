@@ -129,7 +129,7 @@ function Modal() {
             onClose={handleClose}
             className="fixex !top-7 left-0 right-0 z-50 mx-auto w-full max-w-5xl overflow-hidden overflow-y-scroll rounded-md scrollbar-hide"
         >
-            <>
+            <div>
                 <Toaster position="bottom-center" />
                 <button
                     onClick={handleClose}
@@ -211,7 +211,7 @@ function Modal() {
                         </div>
                     </div>
                 </div>
-            </>
+            </div>
         </MuiModal>
     )
 }
