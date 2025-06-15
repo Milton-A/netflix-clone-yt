@@ -1,5 +1,5 @@
 import requests from '@/utils/requests'
-import { Movie } from '../../typing'
+import { Movie } from "@/types/typing";
 
 interface MovieResults {
     netflixOriginals: Movie[]
