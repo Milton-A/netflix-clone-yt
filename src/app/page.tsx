@@ -11,6 +11,9 @@ import Header from "@/components/Header";
 import Row from "@/components/Row";
 import Modal from "@/components/Modal";
 import { useModalMovieStore } from "@/stores/useModalMovieStore";
+import Plans from "@/components/Plans";
+import { getProducts, Product } from "@invertase/firestore-stripe-payments";
+import payments from "@/lib/stripe";
 
 interface MovieResults {
   netflixOriginals: Movie[];
@@ -21,23 +24,37 @@ interface MovieResults {
   horrorMovies: Movie[];
   romanceMovies: Movie[];
   documentaries: Movie[];
+  products: Product[]
 }
 
 export default function Home() {
   const { loading } = useAuth();
   const showModal = useModalMovieStore((state) => state.showModal)
+  const subscription = false
+  const [products, setProducts] = useState<Product[]>([]);
 
-  const [movies, setMovies] = useState<MovieResults | null>(null);
+  const [movies, setMovies] = useState<MovieResults>();
 
+  useEffect(() => {
+    const getProducts = async () => {
+      const productsData = await paymentsProducts();
+      if (!productsData) return;
+      setProducts(productsData);
+    };
+    getProducts();
+  }, []);
   useEffect(() => {
     const getMovies = async () => {
       const moviesData = await fetchMovies();
-      setMovies(moviesData);
+      if (!moviesData)
+        setMovies(moviesData);
     };
     getMovies();
   }, []);
 
-  if (loading) return null;
+  if (loading || subscription === null) return null;
+
+  if (!subscription) return <div><Plans products={products} /></div>
 
   return (
     <div className="relative h-screen bg-gradient-to-b from-gray-900/10 to-[#010511] lg:h-[140vh]">
@@ -57,4 +74,18 @@ export default function Home() {
       {showModal && <Modal />}
     </div>
   );
+}
+
+const paymentsProducts = async (): Promise<Product[]> => {
+  const products = await getProducts(payments, {
+    includePrices: true,
+    activeOnly: true,
+  })
+    .then((res) => res)
+    .catch((error) => {
+      console.log(error.message)
+      return []
+    })
+
+  return products;
 }
