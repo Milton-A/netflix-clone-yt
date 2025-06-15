@@ -33,6 +33,7 @@ function Header() {
                     width={100}
                     height={100}
                     className="cursor-pointer object-contain"
+                    alt="Logo Netflix"
                 />
                 <ul className="hidden space-x-4 md:flex">
                     <li className="headerLink">Home</li>
@@ -52,7 +53,7 @@ function Header() {
                 <img
                     onClick={logout}
                     src="https://rb.gy/g1pwyx"
-                    alt=""
+                    alt="Descrição da imagem"
                     className="cursor-pointer rounded"
                 />
                 {/* </Link> */}
