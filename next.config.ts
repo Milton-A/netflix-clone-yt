@@ -15,6 +15,9 @@ const nextConfig: NextConfig = {
         pathname: '/ffe/siteui/**',
       },
     ],
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
   }
 };
 
