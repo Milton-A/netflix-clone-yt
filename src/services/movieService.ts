@@ -12,7 +12,7 @@ interface MovieResults {
     documentaries: Movie[]
 }
 
-export async function fetchMovies(): Promise<MovieResults | null> {
+export async function fetchMovies(): Promise<MovieResults> {
     const [
         netflixOriginals,
         trendingNow,
