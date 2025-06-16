@@ -1,3 +1,5 @@
+# ENCERRADA a aplicação no firebase
+
 ## Setup
 
 - Utilizado Nextjs v15
