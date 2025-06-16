@@ -21,7 +21,7 @@ const loadCheckout = async (priceId: string) => {
 }
 
 const goToBillingPortal = async () => {
-    const instance = getFunctions(app, 'us-central1')
+    const instance = getFunctions(app, 'eur3')
     const functionRef = httpsCallable(
         instance,
         'ext-firestore-stripe-payments-createPortalLink'

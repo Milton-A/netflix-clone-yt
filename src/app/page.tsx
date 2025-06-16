@@ -14,6 +14,7 @@ import { useModalMovieStore } from "@/stores/useModalMovieStore";
 import Plans from "@/components/Plans";
 import { getProducts, Product } from "@invertase/firestore-stripe-payments";
 import payments from "@/lib/stripe";
+import useSubscription from "@/hooks/useSubscription";
 
 interface MovieResults {
   netflixOriginals: Movie[];
@@ -28,9 +29,9 @@ interface MovieResults {
 }
 
 export default function Home() {
-  const { loading } = useAuth();
+  const { loading, user } = useAuth();
   const showModal = useModalMovieStore((state) => state.showModal)
-  const subscription = false
+  const subscription = useSubscription(user)
   const [products, setProducts] = useState<Product[]>([]);
 
   const [movies, setMovies] = useState<MovieResults>();
@@ -54,7 +55,7 @@ export default function Home() {
 
   if (loading || subscription === null) return null;
 
-  if (!subscription) return <div><Plans products={products} /></div>
+  //if (!subscription) return <div><Plans products={products} /></div>
 
   return (
     <div className="relative h-screen bg-gradient-to-b from-gray-900/10 to-[#010511] lg:h-[140vh]">
@@ -86,6 +87,5 @@ const paymentsProducts = async (): Promise<Product[]> => {
       console.log(error.message)
       return []
     })
-
   return products;
 }

@@ -1,14 +1,14 @@
+/* eslint-disable @next/next/no-img-element */
 "use client"
 
 import React, { useEffect, useState } from "react"
 
 import { BellIcon } from "@heroicons/react/16/solid"
-import useAuth from "@/hooks/useAuth"
+import Link from "next/link"
 
 
 function Header() {
     const [isScrolled, setIsScrolled] = useState(false)
-    const { logout } = useAuth()
 
     useEffect(() => {
         const handleScroll = () => {
@@ -49,14 +49,13 @@ function Header() {
                 </svg>
                 <p className="hidden lg:inline">Kids</p>
                 <BellIcon className="h-6 w-6" />
-                {/* <Link href="/account"> */}
-                <img
-                    onClick={logout}
-                    src="https://rb.gy/g1pwyx"
-                    alt="Descrição da imagem"
-                    className="cursor-pointer rounded"
-                />
-                {/* </Link> */}
+                <Link href="/account">
+                    <img
+                        src="https://rb.gy/g1pwyx"
+                        alt="Descrição da imagem"
+                        className="cursor-pointer rounded"
+                    />
+                </Link>
             </div>
         </header>
     )
