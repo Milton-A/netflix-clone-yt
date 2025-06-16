@@ -4,10 +4,11 @@ import { ChevronLeftIcon } from "@heroicons/react/24/solid"
 import { ChevronRightIcon } from "@heroicons/react/24/solid"
 import Thumbnail from "./Thumbnail"
 import { useRef, useState } from "react"
+import { DocumentData } from "firebase/firestore";
 
 interface RowProps {
     title: string
-    movies: Movie[] | null
+    movies: Movie | DocumentData[]
 }
 
 function Row({ title, movies }: RowProps) {

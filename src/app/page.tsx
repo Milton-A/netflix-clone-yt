@@ -15,6 +15,7 @@ import Plans from "@/components/Plans";
 import { getProducts, Product } from "@invertase/firestore-stripe-payments";
 import payments from "@/lib/stripe";
 import useSubscription from "@/hooks/useSubscription";
+import useList from "@/hooks/useList";
 
 interface MovieResults {
   netflixOriginals: Movie[];
@@ -25,13 +26,14 @@ interface MovieResults {
   horrorMovies: Movie[];
   romanceMovies: Movie[];
   documentaries: Movie[];
-  products: Product[]
 }
 
 export default function Home() {
   const { loading, user } = useAuth();
   const showModal = useModalMovieStore((state) => state.showModal)
+  const movie = useModalMovieStore((state) => state.movie)
   const subscription = useSubscription(user)
+  const list = useList(user?.uid);
   const [products, setProducts] = useState<Product[]>([]);
 
   const [movies, setMovies] = useState<MovieResults>();
@@ -47,18 +49,19 @@ export default function Home() {
   useEffect(() => {
     const getMovies = async () => {
       const moviesData = await fetchMovies();
-      if (!moviesData)
-        setMovies(moviesData);
+      if (!moviesData) return;
+      setMovies(moviesData);
     };
     getMovies();
   }, []);
 
   if (loading || subscription === null) return null;
 
-  //if (!subscription) return <div><Plans products={products} /></div>
+  if (!subscription) return <div><Plans products={products} /></div>
 
   return (
-    <div className="relative h-screen bg-gradient-to-b from-gray-900/10 to-[#010511] lg:h-[140vh]">
+    <div className={`relative h-screen bg-gradient-to-b from-gray-900/10 to-[#010511] lg:h-[140vh] ${showModal && '!h-screen overflow-hidden'
+      }`}>
       <Header />
       <main className="relative pl-4 pb-24 lg:space-y-24 lg:pl-16">
         <Banner netflixOriginals={movies?.netflixOriginals || []} />
@@ -66,6 +69,7 @@ export default function Home() {
           <Row title="Trending Now" movies={movies?.trendingNow || []} />
           <Row title="Top Rated" movies={movies?.topRated || []} />
           <Row title="Action Movies" movies={movies?.actionMovies || []} />
+          {list.length > 0 && <Row title="My List" movies={list} />}
           <Row title="Comedy" movies={movies?.comedyMovies || []} />
           <Row title="Romance" movies={movies?.romanceMovies || []} />
           <Row title="Horror" movies={movies?.horrorMovies || []} />
@@ -73,7 +77,7 @@ export default function Home() {
         </section>
       </main>
       {showModal && <Modal />}
-    </div>
+    </div >
   );
 }
 

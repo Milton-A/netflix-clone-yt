@@ -41,7 +41,7 @@
     }
 
     .bannerButton {
-        @apply flex items-center gap-x-2 rounded px-5 py-1.5 text-sm font-semibold transition hover:opacity-75 md:py-2.5 md:px-8 md:text-xl
+        @apply flex items-center gap-x-2 rounded px-5 py-1.5 text-sm font-semibold transition hover:opacity-75 md:py-2.5 md:px-8 md:text-xl;
     }
 
     .input {
@@ -69,5 +69,7 @@
         @apply w-[calc(100%/3)] p-2.5 text-center md:w-[calc(60%/3)] md:p-3.5;
     }
 
-
+    .membershipLink {
+        @apply cursor-pointer text-blue-500 hover:underline;
+    }
 }

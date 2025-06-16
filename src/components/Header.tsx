@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react"
 
 import { BellIcon } from "@heroicons/react/16/solid"
 import Link from "next/link"
+import BasicMenu from "./BasicMenu"
 
 
 function Header() {
@@ -35,6 +36,7 @@ function Header() {
                     className="cursor-pointer object-contain"
                     alt="Logo Netflix"
                 />
+                <BasicMenu />
                 <ul className="hidden space-x-4 md:flex">
                     <li className="headerLink">Home</li>
                     <li className="headerLink">TV Shows</li>
