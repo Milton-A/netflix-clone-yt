@@ -1,4 +1,7 @@
-
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable @next/next/no-img-element */
+import { CheckIcon } from '@heroicons/react/24/outline'
+import { Product } from '@invertase/firestore-stripe-payments'
 import Head from 'next/head'
 import Link from 'next/link'
 import { useState } from 'react'
@@ -6,8 +9,6 @@ import useAuth from '../hooks/useAuth'
 import { loadCheckout } from '../lib/stripe'
 import Loader from './Loader'
 import Table from './Table'
-import { Product } from '@invertase/firestore-stripe-payments'
-import { CheckIcon } from '@heroicons/react/24/outline'
 
 interface Props {
     products: Product[]
@@ -20,8 +21,9 @@ function Plans({ products }: Props) {
 
     const subscribeToPlan = () => {
         if (!user) return
+        if (!selectedPlan?.prices[0]?.id) return
 
-        loadCheckout(selectedPlan?.prices[0].id!)
+        loadCheckout(selectedPlan.prices[0].id)
         setBillingLoading(true)
     }
 

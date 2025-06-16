@@ -17,8 +17,8 @@ function Table({ products, selectedPlan }: Props) {
                         <td
                             key={product.id}
                             className={`tableDataFeature ${selectedPlan?.id === product.id
-                                ? 'text-[#e50914]'
-                                : 'text-[gray]'
+                                    ? 'text-[#e50914]'
+                                    : 'text-[gray]'
                                 }`}
                         >
                             AED{product.prices[0].unit_amount! / 100}
@@ -32,8 +32,8 @@ function Table({ products, selectedPlan }: Props) {
                         <td
                             key={product.id}
                             className={`tableDataFeature ${selectedPlan?.id === product.id
-                                ? 'text-[#e50914]'
-                                : 'text-[gray]'
+                                    ? 'text-[#e50914]'
+                                    : 'text-[gray]'
                                 }`}
                         >
                             {product.metadata.videoQuality}
@@ -46,8 +46,8 @@ function Table({ products, selectedPlan }: Props) {
                     {products.map((product) => (
                         <td
                             className={`tableDataFeature ${selectedPlan?.id === product.id
-                                ? 'text-[#E50914]'
-                                : 'text-[gray]'
+                                    ? 'text-[#E50914]'
+                                    : 'text-[gray]'
                                 }`}
                             key={product.id}
                         >
@@ -63,8 +63,8 @@ function Table({ products, selectedPlan }: Props) {
                     {products.map((product) => (
                         <td
                             className={`tableDataFeature ${selectedPlan?.id === product.id
-                                ? 'text-[#E50914]'
-                                : 'text-[gray]'
+                                    ? 'text-[#E50914]'
+                                    : 'text-[gray]'
                                 }`}
                             key={product.id}
                         >
