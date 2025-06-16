@@ -2,9 +2,10 @@ import Image from "next/image"
 import { Movie } from "@/types/typing";
 import { baseUrlW500 } from "@/constants/movie"
 import { useModalMovieStore } from "@/stores/useModalMovieStore";
+import { DocumentData } from "firebase/firestore";
 
 interface ThumbnailProps {
-    movie: Movie
+    movie: Movie | DocumentData
 }
 function Thumbnail({ movie }: ThumbnailProps) {
     const setShowModal = useModalMovieStore((state) => state.setShowModal)

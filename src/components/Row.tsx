@@ -8,7 +8,7 @@ import { DocumentData } from "firebase/firestore";
 
 interface RowProps {
     title: string
-    movies: Movie | DocumentData[]
+    movies: Movie[] | DocumentData[]
 }
 
 function Row({ title, movies }: RowProps) {
