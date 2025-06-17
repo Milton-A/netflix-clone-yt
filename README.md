@@ -1,4 +1,4 @@
-# ENCERRADA a aplicação no firebase
+# ONLINE AGAIN
 
 ## Setup
 
