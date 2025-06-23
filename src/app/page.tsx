@@ -31,7 +31,6 @@ interface MovieResults {
 export default function Home() {
   const { loading, user } = useAuth();
   const showModal = useModalMovieStore((state) => state.showModal)
-  const movie = useModalMovieStore((state) => state.movie)
   const subscription = useSubscription(user)
   const list = useList(user?.uid);
   const [products, setProducts] = useState<Product[]>([]);
